@@ -1,0 +1,17 @@
+.entervalue{
+    width: 85%;
+}
+#url-p{
+    color: red;
+}
+#email-p{
+    color: red;
+}
+#qrcode{
+ 
+ float: left;
+ padding-right: 100px;
+}
+#number,#sms{
+    width: 85%;
+}
