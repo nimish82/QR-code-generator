@@ -4,14 +4,21 @@
 #url-p{
     color: red;
 }
+#sms-p{
+    color: red;
+}
+#phone-p{
+    color: red;
+}
 #email-p{
     color: red;
 }
 #qrcode{
  
  float: left;
- padding-right: 100px;
+ margin-right: 100px;
 }
 #number,#sms{
     width: 85%;
+    margin:10px
 }

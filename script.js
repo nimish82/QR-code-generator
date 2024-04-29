@@ -15,7 +15,7 @@ const options = {
     },
     dotsOptions: {
         color: pixels,
-        type: pixelsType
+        type: pixelsType,
         },
     cornersSquareOptions: {
         color: squares,
@@ -63,8 +63,8 @@ function colorchange(e) {
         default:
             options.cornersDotOptions.color = e.target.value;
     }  
-    // console.log( options)
-    // console.log('value',inputs[i].value)
+    console.log( options)
+    console.log('value',inputs[i].value)
     generateQRCode('qrcode-1', inputs[i].value, options)
 };
 function generateQRCode(qrId, text, options) {
@@ -97,15 +97,17 @@ var numberofselectButtons = document.querySelectorAll(".selectbutton").length;
 const inputLength = document.querySelectorAll(".entervalue").length;
 const errorMessage = document.querySelectorAll(".errormessage");
 const inputContainer = document.querySelectorAll(".inputContainer");
+const urlError= document.getElementById('url-p');
+ const smsError=document.getElementById('sms-p');
+ const phoneError= document.getElementById('phone-p');
+ const emailError= document.getElementById('email-p');
+ 
 console.log(inputLength);
 //  loop for entering  the data/text/url etc on the basis of no. of fields given
 for (let i = 0; i < inputLength; i++) {
     inputs[i].addEventListener("input", function () {
-
-        // console.log('myinputs',inputs[i])
-
-        // console.log('input length',inputLength)
-
+        checkValidation(inputs[i].value,i)
+        
         document.getElementById("qrcode").innerHTML = "";
         var user_input = inputs[i].value;
         const qr = new QRCode(document.getElementById("qrcode"), user_input);
@@ -116,18 +118,40 @@ for (let i = 0; i < inputLength; i++) {
 
     });
 }
+// for error messages 
+function checkValidation (inputValue,i){
+    var urlPattern = /\.com$/;
+    urlError.innerHTML = (i === 0 && inputValue.match(urlPattern)) ? "URL is valid" : "Please enter a valid URL";
+    var phonePattern = /^\d{6,10}$/;
+    smsError.innerHTML = (i === 1 && inputValue.match(phonePattern)) ? "Number is valid to send message" : "Please enter a valid number to send message";
+    var phonePattern = /^\d{6,10}$/;
+    phoneError.innerHTML = (i === 3 && inputValue.match(phonePattern)) ? "Number is valid " : "Please enter a valid number";
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    emailError.innerHTML = (i === 4 && inputValue.match(emailPattern)) ? "Email is valid " : "Please enter a valid Email";
+} 
 // loop for changing fields on the basis of button 
 for (let i = 0; i < numberofselectButtons; i++) {
     if (i !== 0) {
         inputContainer[i].style.display = 'none';
+        
     }
+    
+    
     document.querySelectorAll(".selectbutton")[i].addEventListener("click", function () {
 
+        
+        urlError.style.display = (i !== 0) ? 'none' : 'block';
+        smsError.style.display = (i !== 1) ? 'none' : 'block';
+        phoneError.style.display = (i !== 2) ? 'none' : 'block';
+        emailError.style.display = (i !== 3) ? 'none' : 'block';
         console.log(i);
+
         for (let j = 0; j < numberofselectButtons; j++) {
 
             if (j == i) {
                 inputContainer[i].style.display = 'block';
+                // let elementCount = inputContainer[i].childElementCount;  
+
             }
             else {
                 inputContainer[j].style.display = 'none';
