@@ -101,6 +101,7 @@ const urlError= document.getElementById('url-p');
  const smsError=document.getElementById('sms-p');
  const phoneError= document.getElementById('phone-p');
  const emailError= document.getElementById('email-p');
+ const textError =document.getElementById('text-p');
 //  urlError.style.display = 'block';
 console.log(inputLength);
 //  loop for entering  the data/text/url etc on the basis of no. of fields given
@@ -128,6 +129,7 @@ function checkValidation (inputValue,i){
     phoneError.innerHTML = (i === 3 && inputValue.match(phonePattern)) ? "Number is valid " : "Please enter a valid number";
     var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     emailError.innerHTML = (i === 4 && inputValue.match(emailPattern)) ? "Email is valid " : "Please enter a valid Email";
+    textError.innerHTML = (i === 6 && inputValue.match()) ? "Type your text" : "Type your text";
 } 
 // loop for changing fields on the basis of button 
 for (let i = 0; i < numberofselectButtons; i++) {
@@ -147,6 +149,7 @@ for (let i = 0; i < numberofselectButtons; i++) {
         smsError.style.display = (i !== 1) ? 'none' : 'block';
         phoneError.style.display = (i !== 2) ? 'none' : 'block';
         emailError.style.display = (i !== 3) ? 'none' : 'block';
+        textError.style.display = (i !== 4) ? 'none' : 'block';
         console.log(i);
 
         for (let j = 0; j < numberofselectButtons; j++) {
