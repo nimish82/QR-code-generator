@@ -101,7 +101,7 @@ const urlError= document.getElementById('url-p');
  const smsError=document.getElementById('sms-p');
  const phoneError= document.getElementById('phone-p');
  const emailError= document.getElementById('email-p');
- 
+//  urlError.style.display = 'block';
 console.log(inputLength);
 //  loop for entering  the data/text/url etc on the basis of no. of fields given
 for (let i = 0; i < inputLength; i++) {
@@ -133,7 +133,10 @@ function checkValidation (inputValue,i){
 for (let i = 0; i < numberofselectButtons; i++) {
     if (i !== 0) {
         inputContainer[i].style.display = 'none';
-        
+       if(i !==0){
+        errorMessage[i].style.display='none';
+       }
+
     }
     
     
