@@ -1,10 +1,10 @@
 const backgroundColor = document.getElementById("background-color").value;
 const squares = document.getElementById("squares").value;
+const cornerSquarestype = document.getElementById("cornerSquaretype").value;
 const pixels = document.getElementById("pixels").value;
 const cornersDot = document.getElementById("cornerDots").value;
 const cornersDottype = document.getElementById("cornerDotstype").value;
 const pixelsType = document.getElementById("pixels-type").value;
-
 const imageInput = document.getElementById("image-input").files[0];
 const inputs = document.querySelectorAll(".entervalue");
 
@@ -16,12 +16,10 @@ const options = {
     dotsOptions: {
         color: pixels,
         type: pixelsType
-       
-    },
+        },
     cornersSquareOptions: {
         color: squares,
-        
-
+        type:cornerSquarestype
     },
     cornersDotOptions: {
         color: cornersDot,
@@ -31,7 +29,6 @@ const options = {
         crossOrigin: "anonymous",
         margin: 8
     },
-
 };
 // for changing color
 function colorchange(e) {
@@ -42,33 +39,34 @@ function colorchange(e) {
         if (a[j].style.display !== 'none') {
             i = j;
         }
-    }
-    if (e.target.name === 'background-color') {
-        options.backgroundOptions.color = e.target.value
-    }else if (e.target.name == 'squares'  ) {
-        options.cornersSquareOptions.color = e.target.value
-        //  options.cornersSquareOptions.type= e.target.value
-        
-    } 
-    else if (e.target.name == 'pixels' ) {
-        options.dotsOptions.color = e.target.value
-         
-    }
-    else if (e.target.name == 'pixels-type'){
-        options.dotsOptions.type = e.target.value;
-    }
-     else  {
-        // options.cornersDotOptions.type = e.target.value
-
-        options.cornersDotOptions.color = e.target.value
-        // console.log(cornersDotOptions.type);
-
-    }
-    console.log( options)
-    console.log('value',inputs[i].value)
+    }   
+    // for changing  shape, color and adding image in the qrcode-1 from the library 
+    switch (e.target.name) {
+        case 'background-color':
+            options.backgroundOptions.color = e.target.value;
+            break;
+        case 'squares':
+            options.cornersSquareOptions.color = e.target.value;
+            break;
+        case 'cornerSquaretype':
+            options.cornersSquareOptions.type = e.target.value;
+            break;
+        case 'pixels':
+            options.dotsOptions.color = e.target.value;
+            break;
+        case 'pixels-type':
+            options.dotsOptions.type = e.target.value;
+            break;
+        case 'cornerDotstype':
+            options.cornersDotOptions.type = e.target.value;
+            break;
+        default:
+            options.cornersDotOptions.color = e.target.value;
+    }  
+    // console.log( options)
+    // console.log('value',inputs[i].value)
     generateQRCode('qrcode-1', inputs[i].value, options)
 };
-
 function generateQRCode(qrId, text, options) {
     // customizing the qrcode-1 on the basis of library used for generating qrcode
     const qrCodeElement = document.getElementById(qrId);
@@ -104,9 +102,9 @@ console.log(inputLength);
 for (let i = 0; i < inputLength; i++) {
     inputs[i].addEventListener("input", function () {
 
-        console.log('myinputs',inputs[i])
+        // console.log('myinputs',inputs[i])
 
-        console.log('input length',inputLength)
+        // console.log('input length',inputLength)
 
         document.getElementById("qrcode").innerHTML = "";
         var user_input = inputs[i].value;
@@ -123,12 +121,9 @@ for (let i = 0; i < numberofselectButtons; i++) {
     if (i !== 0) {
         inputContainer[i].style.display = 'none';
     }
-
     document.querySelectorAll(".selectbutton")[i].addEventListener("click", function () {
 
         console.log(i);
-
-
         for (let j = 0; j < numberofselectButtons; j++) {
 
             if (j == i) {
@@ -153,7 +148,6 @@ function copyQR() {
         ]);
     }, 'image/png');
 }
-
 function downloadQR() {
     var canvas = document.querySelector('#qrcode-1 canvas');
 
