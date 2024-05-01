@@ -74,8 +74,8 @@ function generateQRCode(qrId, text, options) {
     // Customize options for qrcode-1
     if (qrId === "qrcode-1") {
         const qrOptions = {
-            width: 270,
-            height: 270,
+            width: 240,
+            height: 240,
             data: text,
             ...options,
         };
@@ -98,11 +98,10 @@ const inputLength = document.querySelectorAll(".entervalue").length;
 const errorMessage = document.querySelectorAll(".errormessage");
 const inputContainer = document.querySelectorAll(".inputContainer");
 const urlError= document.getElementById('url-p');
- const smsError=document.getElementById('sms-p');
- const phoneError= document.getElementById('phone-p');
- const emailError= document.getElementById('email-p');
- const textError =document.getElementById('text-p');
-//  urlError.style.display = 'block';
+const smsError=document.getElementById('sms-p');
+const phoneError= document.getElementById('phone-p');
+const emailError= document.getElementById('email-p');
+const textError =document.getElementById('text-p');
 console.log(inputLength);
 //  loop for entering  the data/text/url etc on the basis of no. of fields given
 for (let i = 0; i < inputLength; i++) {
@@ -121,7 +120,7 @@ for (let i = 0; i < inputLength; i++) {
 }
 // for error messages 
 function checkValidation (inputValue,i){
-    var urlPattern = /\.com$/;
+    var urlPattern = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?(\.com)?$/;
     urlError.innerHTML = (i === 0 && inputValue.match(urlPattern)) ? "URL is valid" : "Please enter a valid URL";
     var phonePattern = /^\d{6,10}$/;
     smsError.innerHTML = (i === 1 && inputValue.match(phonePattern)) ? "Number is valid to send message" : "Please enter a valid number to send message";
@@ -129,7 +128,7 @@ function checkValidation (inputValue,i){
     phoneError.innerHTML = (i === 3 && inputValue.match(phonePattern)) ? "Number is valid " : "Please enter a valid number";
     var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     emailError.innerHTML = (i === 4 && inputValue.match(emailPattern)) ? "Email is valid " : "Please enter a valid Email";
-    textError.innerHTML = (i === 6 && inputValue.match()) ? "Type your text" : "Type your text";
+    textError.innerHTML = (i === 6 && inputValue.match()) ? " " : "Type your text";
 } 
 // loop for changing fields on the basis of button 
 for (let i = 0; i < numberofselectButtons; i++) {
@@ -140,11 +139,8 @@ for (let i = 0; i < numberofselectButtons; i++) {
        }
 
     }
-    
-    
     document.querySelectorAll(".selectbutton")[i].addEventListener("click", function () {
 
-        
         urlError.style.display = (i !== 0) ? 'none' : 'block';
         smsError.style.display = (i !== 1) ? 'none' : 'block';
         phoneError.style.display = (i !== 2) ? 'none' : 'block';
