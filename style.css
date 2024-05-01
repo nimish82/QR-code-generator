@@ -1,3 +1,6 @@
+body{
+    background-color: hsl(0, 16%, 87%);
+}
 .entervalue{
     width: 85%;
 }
@@ -13,12 +16,42 @@
 #email-p{
     color: red;
 }
+#text-p{
+    color: red;
+}
 #qrcode{
  
  float: left;
  margin-right: 100px;
+ height: 250px;
+ 
 }
 #number,#sms{
     width: 85%;
     margin:10px
+}
+.h1{
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold ;
+}
+#qrcode-1{
+    height: 250px;
+}
+input[type="color"]{
+    width: 100px;
+}
+.coloring{
+    display: flex;
+    justify-content:space-between;
+}
+.colorDiv{
+    width: 236px;
+}
+.type{
+    display: flex;
+    justify-content: space-between;
+}
+#pixels-type, #cornerDotstype, #cornerSquaretype{
+    width: 450px;
 }

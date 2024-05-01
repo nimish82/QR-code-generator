@@ -12,7 +12,6 @@
     crossorigin="anonymous"></script>
   <script src="qrcode.min.js"></script>
   <link rel="stylesheet" href="style.css">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -20,102 +19,134 @@
 </head>
 
 <body>
-  <nav class="navbar bg-body-tertiary">
+  <nav class="navbar bg dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
     <div class="container-fluid">
-      <a class="navbar-brand">QR Code Generator </a>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <a class="navbar-brand" href="index.html">
+        <span class="badge bg-primary">QR</span>
+        QR Code Generator 
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
     </div>
   </nav>
-  <div class="container">
-    <h3>QR Code Generator: Craft your own custom QR codes</h3>
-    <div class=" allbutton  mt-5">
-      <button type="button" class="btn btn-primary selectbutton"><i class="fa-solid fa-link"></i> URL</button>
-      <button type="button" class="btn btn-primary selectbutton"><i class="fa-regular fa-message"></i> SMS</button>
-      <button type="button" class="btn btn-primary selectbutton"><i class="fa-solid fa-phone"></i> Phone</button>
-      <button type="button" class="btn btn-primary selectbutton"><i class="fa-solid fa-at"></i> Email</button>
-      <button type="button" class="btn btn-primary selectbutton"><i class="fa-regular fa-file-lines"></i> Text</button>
+  <div class="container  ">
+    <h1 class="h1">QR Code Generator: Craft your own custom QR codes</h1>
+    <div class="row mt-4">
+      <div class="col-md-6 mt-5">
+        <div class="allbutton">
+          <button type="button" class="btn btn-dark selectbutton m-2"><i class="fas fa-link"></i> URL</button>
+          <button type="button" class="btn btn-dark selectbutton m-2"><i class="far fa-envelope"></i> SMS</button>
+          <button type="button" class="btn btn-dark selectbutton m-2"><i class="fas fa-phone-alt"></i> Phone</button>
+          <button type="button" class="btn btn-dark selectbutton m-2"><i class="fas fa-at"></i> Email</button>
+          <button type="button" class="btn btn-dark selectbutton m-2"><i class="far fa-file-alt"></i> Text</button>
+        </div>
+        <div class="mt-4">
+          <div class="inputContainer">
+            <input type="url" class="form-control p-3 entervalue" id="url" placeholder="Enter URL">
+            <p class="errormessage" id="url-p"></p>
+          </div>
+          <div class="inputContainer">
+            <input type="number" class="form-control p-3 entervalue" min="0" id="number"
+              placeholder="Enter your Number">
+            <p class="errormessage" id="sms-p"></p>
+            <input type="text" class="form-control p-3 entervalue" id="sms" placeholder="Enter text">
+          </div>
+          <div class="inputContainer">
+            <input type="number" class="form-control p-3 entervalue" min="0" id="number" placeholder="Enter Number">
+            <p class="errormessage" id="phone-p"></p>
+          </div>
+          <div class="inputContainer">
+            <input type="email" class="form-control p-3 entervalue" id="email" placeholder="example@.com">
+            <p class="errormessage" id="email-p"></p>
+            <input type="text" class="form-control p-3 entervalue" id="sms" placeholder="Add message ">
+          </div>
+          <div class="inputContainer">
+            <input type="text" class="form-control p-3 entervalue" id="input" placeholder="Enter Text" required>
+            <p class="errormessage" id="text-p"></p>
+          </div>
+        </div>
+        <div class="mt-3">
+          <div class="colorDiv">
+            <!-- Background color input -->
+            <div class="coloring">
+              <label for="background-color">Background Color :</label>
+              <input type="color" id="background-color" onchange="colorchange(event)" name="background-color"
+                value="#ffffff">
+            </div>
+            <br>
+            <div class="coloring">
+              <label for="squares">Squares Color :</label>
+              <input type="color" id="squares" onchange="colorchange(event)" name="squares" value="#292FD6">
+            </div>
+            <br>
+            <div class="coloring">
+              <label for="pixels">Pixels Color :</label>
+              <input type="color" id="pixels" onchange="colorchange(event)" name="pixels" value="#292FD6">
+            </div>
+            <br>
+            <div class="coloring">
+              <label for="cornerDots">Corner Dots Color :</label>
+              <input type="color" id="cornerDots" onchange="colorchange(event)" name="cornerDots" value="#292FD6">
+            </div>
+          </div>
 
-    </div>
-    <div class="mt-4 col-8  ">
-      <div class="inputContainer">
-        <input type="url" class="p-3 entervalue" id="url" placeholder="Enter URL">
+          <div class="mt-3 " style="width: 600px;">
+            <div class="type">
+              <label for="pixels-type" style="margin-top: 7px;">Pixels Type :</label>
+              <select id="pixels-type" onchange="colorchange(event)" name="pixels-type" class="form-select">
+                <option value="square">Square</option>
+                <option value="extra-round">Extra Round</option>
+                <option value="classy">Classy</option>
+                <option value="rounded">Rounded</option>
+                <option value="classy-rounded">Classy Round</option>
+                <option value="dots">Dots</option>
+              </select>
+            </div>
+            <br> 
+            <div class="type">
+              <label for="cornerDotstype" style="margin-top: 5px;">Corner Dot Type :</label>
+              <select id="cornerDotstype" onchange="colorchange(event)" name="cornerDotstype" class="form-select">
+                <option value="square">Square</option>
+                <option value="dot">Dot</option>
+              </select>
+            </div>
+            <br>
+            <div class="type">
+              <label for="cornerSquaretype" style="margin-top: 5px;">Corner Square Type :</label>
+              <select id="cornerSquaretype" onchange="colorchange(event)" name="cornerSquaretype" class="form-select">
+                <option value="square">Square</option>
+                <option value="round">Round</option>
+                <option value="extra-rounded">Extra-rounded</option>
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="inputContainer">
-        <input type="number" class="p-3 entervalue" min="0" id="number" placeholder="Enter your Number">
-        <input type="text" class="p-3 entervalue" id="sms" placeholder="Enter text">
-      </div>
-      <div class="inputContainer">
-        <input type="number" class="p-3 entervalue" min="0" id="number" placeholder="Enter Number">
-      </div>
-      <div class="inputContainer">
-        <input type="email" class="p-3 entervalue" id="email" placeholder="example@.com">
-        <input type="text" class="p-3 entervalue" id="sms" placeholder="Add message ">
-      </div>
-      <div class="inputContainer">
-        <input type="text" class="p-3 entervalue" id="input" placeholder="Enter Text" required>
-      </div>
-    </div>
-      <div>
-        <p class="errormessage" id="url-p"></p>
-        <p class="errormessage" id="sms-p"></p>
-        <p class="errormessage" id="phone-p"></p>
-        <p class="errormessage" id="email-p"></p>
-        <p class="errormessage" id="text-p"></p>
-      </div>
-      <div>
-        <!-- Background color input -->
-        <label for="background-color">Background Color:</label>
-        <input type="color" id="background-color" oninput="colorchange(event)" name="background-color" value="#ffffff">
-        <label for="squares">squares:</label>
-        <input type="color" id="squares" oninput="colorchange(event)" name="squares">
-        <label for="pixels">pixels:</label>
-        <input type="color" id="pixels" oninput="colorchange(event)" name="pixels">
-        <label for="cornerDots">ConrnerDots:</label>
-        <input type="color" id="cornerDots" oninput="colorchange(event)" name="cornerDots">
 
-        <!-- Image upload input -->
-        <label for="image-input">Upload Image:</label>
-        <input type="file" id="image-input" name="image-input" accept="image/*" oninput="colorchange(event)">
-        <!-- <button type="button" id="qr_btn" class="btn btn-primary">Generate your QR code</button> -->
+      <div class="col-md-6">
+        <div class="all_qr">
+          <div id="qrcode" class=""></div>
+          <div id="qrcode-1" class="mt-4"></div>
+        </div>
+        <div class="d-flex justify-content-end">
+          <i class="fa text-center p-2 bg-info m-1 rounded  fa-copy" onclick="copyQR()" aria-hidden="true">
+            <small>Copy</small></i>
+          <i class="fa text-center p-2 bg-info m-1 rounded fa-download" onclick="downloadQR()" aria-hidden="true">
+            <small>Download</small></i>
+        </div>
+        <div class="mt-4 d-flex justify-content-end">
+          <!-- Image upload input -->
+          <label for="image-input" >Add Logo: </label>
+          <input type="file" id="image-input" name="image-input" accept="image/*" onchange="colorchange(event)">
+        </div>
       </div>
-      <div class="mt-3">
-        <label for="pixels-type">Pixels Type :</label>
-        <select id="pixels-type" onchange="colorchange(event)" name="pixels-type">
-          <option value="square">Square</option>
-          <option value="extra-round"> Extra Round</option>
-          <option value="classy">Classy</option>
-          <option value="rounded">Rounded</option>
-          <option value="classy-rounded">Classy Round</option>
-          <option value="dots">Dots</option>
-        </select>
-        <label for="cornerDotstype">Corner Dot Type :</label>
-        <select id="cornerDotstype" onchange="colorchange(event)" name="cornerDotstype">
-          <option value="square">Square</option>
-          <option value="dot">Dot</option>
-        </select>
-        <label for="cornerSquaretype">Corner square Type :</label>
-        <select id="cornerSquaretype" onchange="colorchange(event)" name="cornerSquaretype">
-          <option value="square">Square</option>
-          <option value="round">Round</option>
-          <option value="extra-rounded">Extra-rounded</option>
-        </select>
-      </div>
-      <div class="all_qr">
-        <div id="qrcode" class="mt-4"></div>
-        <div id="qrcode-1" class="mt-4"></div>
-      </div>
-    </div>
-    <div class="d-flex justify-content-end">
-      <i class="fa text-center p-2 bg-info m-1 rounded  fa-copy" onclick="copyQR()" aria-hidden="true">
-        <small>Copy</small></i>
-      <i class="fa text-center p-2 bg-info m-1 rounded fa-download" onclick="downloadQR()" aria-hidden="true">
-        <small>Download</small></i>
     </div>
 
-    <script src="script.js"></script>
+
+  </div>
+  <script src="script.js"></script>
 </body>
 
 </html>
