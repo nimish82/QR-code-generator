@@ -25,10 +25,6 @@
         <span class="badge bg-primary">QR</span>
         QR Code Generator 
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      
     </div>
   </nav>
   <div class="container  ">
@@ -48,10 +44,11 @@
             <p class="errormessage" id="url-p"></p>
           </div>
           <div class="inputContainer">
-            <input type="number" class="form-control p-3 entervalue" min="0" id="number"
+            <input type="number" class="form-control p-3 entervalue" min="0" id="number1"
               placeholder="Enter your Number">
             <p class="errormessage" id="sms-p"></p>
-            <input type="text" class="form-control p-3 entervalue" id="sms" placeholder="Enter text">
+            <input type="text" class="form-control p-3 entervalue" id="sms1" placeholder="Enter text">
+            <input type="text" class="form-control p-3 entervalue d-none" id="merge">
           </div>
           <div class="inputContainer">
             <input type="number" class="form-control p-3 entervalue" min="0" id="number" placeholder="Enter Number">
@@ -60,7 +57,9 @@
           <div class="inputContainer">
             <input type="email" class="form-control p-3 entervalue" id="email" placeholder="example@.com">
             <p class="errormessage" id="email-p"></p>
-            <input type="text" class="form-control p-3 entervalue" id="sms" placeholder="Add message ">
+            <input type="text" class="form-control p-3 entervalue" id="sms2" placeholder="Add message ">
+            <input type="text" class="form-control p-3 entervalue d-none" id="merge1" >
+            
           </div>
           <div class="inputContainer">
             <input type="text" class="form-control p-3 entervalue" id="input" placeholder="Enter Text" required>

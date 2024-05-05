@@ -7,7 +7,6 @@ const cornersDottype = document.getElementById("cornerDotstype").value;
 const pixelsType = document.getElementById("pixels-type").value;
 const imageInput = document.getElementById("image-input").files[0];
 const inputs = document.querySelectorAll(".entervalue");
-
 //state of app
 const options = {
     backgroundOptions: {
@@ -17,7 +16,7 @@ const options = {
         color: pixels,
         type: pixelsType,
         },
-    cornersSquareOptions: {
+    cornersSquareOptions: { 
         color: squares,
         type:cornerSquarestype
     },
@@ -78,7 +77,7 @@ function generateQRCode(qrId, text, options) {
             height: 240,
             data: text,
             ...options,
-        };
+        };  
         const imageInput = document.getElementById("image-input").files[0];
 
         if (imageInput) {
@@ -107,15 +106,14 @@ console.log(inputLength);
 for (let i = 0; i < inputLength; i++) {
     inputs[i].addEventListener("input", function () {
         checkValidation(inputs[i].value,i)
-        
-        document.getElementById("qrcode").innerHTML = "";
-        var user_input = inputs[i].value;
+        document.getElementById("merge").value=document.getElementById("number1").value +' ' + document.getElementById("sms1").value
+        document.getElementById("merge1").value=document.getElementById("email").value + ' '+ document.getElementById("sms2").value
+        document.getElementById("qrcode").innerHTML = "";   
+        var user_input = (i === 1 || i === 2) ? inputs[3].value : (i === 5 || i === 6) ? inputs[7].value : inputs[i].value;
         const qr = new QRCode(document.getElementById("qrcode"), user_input);
         console.log(user_input, qr);
         document.getElementById("qrcode-1").innerHTML = "";
-        var user_input = inputs[i].value;
         generateQRCode("qrcode-1", user_input, options);
-
     });
 }
 // for error messages 
@@ -125,10 +123,10 @@ function checkValidation (inputValue,i){
     var phonePattern = /^\d{6,10}$/;
     smsError.innerHTML = (i === 1 && inputValue.match(phonePattern)) ? "Number is valid to send message" : "Please enter a valid number to send message";
     var phonePattern = /^\d{6,10}$/;
-    phoneError.innerHTML = (i === 3 && inputValue.match(phonePattern)) ? "Number is valid " : "Please enter a valid number";
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    emailError.innerHTML = (i === 4 && inputValue.match(emailPattern)) ? "Email is valid " : "Please enter a valid Email";
-    textError.innerHTML = (i === 6 && inputValue.match()) ? " " : "Type your text";
+    phoneError.innerHTML = (i === 4 && inputValue.match(phonePattern)) ? "Number is valid " : "Please enter a valid number";
+    var emailPattern =  /^(.+)@gmail\.com$/;
+    emailError.innerHTML = (i === 5 && inputValue.match(emailPattern)) ? "Email is valid " : "Please enter a valid Email";
+    textError.innerHTML = (i === 8 && inputValue.match()) ? " " : "Type your text";
 } 
 // loop for changing fields on the basis of button 
 for (let i = 0; i < numberofselectButtons; i++) {
@@ -137,7 +135,6 @@ for (let i = 0; i < numberofselectButtons; i++) {
        if(i !==0){
         errorMessage[i].style.display='none';
        }
-
     }
     document.querySelectorAll(".selectbutton")[i].addEventListener("click", function () {
 
@@ -152,12 +149,10 @@ for (let i = 0; i < numberofselectButtons; i++) {
 
             if (j == i) {
                 inputContainer[i].style.display = 'block';
-                // let elementCount = inputContainer[i].childElementCount;  
-
+                 console.log(inputContainer[i].childElementCount);  
             }
             else {
                 inputContainer[j].style.display = 'none';
-
             }
         }
     });
@@ -190,3 +185,4 @@ function downloadQR() {
         console.error("QR code canvas element not found.");
     }
 }
+
